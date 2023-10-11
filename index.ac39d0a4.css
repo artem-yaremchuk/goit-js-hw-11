@@ -1,0 +1,2 @@
+.button-container{justify-content:center;align-items:center;display:flex}.load-more-hidden{display:none}.load-more{text-align:center;text-transform:uppercase;color:#fff;cursor:pointer;background-color:#007bff;border:none;border-radius:5px;padding:10px 20px;font-size:1.2em;font-weight:700;transition:background-color .3s ease-in-out,transform .2s ease-in-out;display:inline-block}.load-more:hover{background-color:#0056b3;transform:scale(1.05)}.load-more:disabled{cursor:not-allowed;background-color:#c1c1c1}
+/*# sourceMappingURL=index.ac39d0a4.css.map */
