@@ -1,6 +1,4 @@
 import Notiflix from "notiflix";
-import SimpleLightbox from "simplelightbox";
-import "simplelightbox/dist/simple-lightbox.min.css";
 import { serviceImages } from "./service-images.js";
 
 const refs = {
