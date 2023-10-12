@@ -10,7 +10,9 @@ const refs = {
 
 let page = 1;
 
-let perPage = 40;
+// let userInput = поясніть яким чином я сюди можу передати formData з функції handleSearch,
+// якщо воно знаходиться у внутрішньмоу коді(потрібен return як минімум але тоді код ляже) і завязано на обробнику події submit;
+// console.log(userInput);
 
 refs.loadBtn.classList.replace("load-more", "load-more-hidden");
 
@@ -41,7 +43,7 @@ async function handleSearch(event) {
 
     refs.list.innerHTML = createMarkup(images.hits);
 
-    const currentImagesHits = page * perPage;
+    const currentImagesHits = page * images.perPage;
 
     if (currentImagesHits < images.totalHits) {
       refs.loadBtn.classList.replace("load-more-hidden", "load-more");
@@ -56,14 +58,15 @@ async function handleSearch(event) {
 
 async function onLoadMore({ target }) {
   page += 1;
-  const currentImagesHits = page * perPage;
 
   target.disabled = true;
 
   try {
-    const images = await serviceImages(formData = "cat", page);
+    const images = await serviceImages(userInput, page);
 
     refs.list.insertAdjacentHTML("beforeend", createMarkup(images.hits));
+
+    const currentImagesHits = page * images.perPage;
 
     if (currentImagesHits >= images.totalHits) {
       refs.loadBtn.classList.replace("load-more", "load-more-hidden");
