@@ -10,16 +10,7 @@ const refs = {
 
 let page = 1;
 
-// let userInput = поясніть яким чином я сюди можу передати formData з функції handleSearch,
-
-// якщо воно знаходиться у внутрішньмоу коді (потрібен return як минімум але тоді код зупиниться) і завязано на обробнику події submit;
-
-//  варіанти які пробував не працюють
-// let userInput = document.getElementById('searchQuery').value;
-
-// let userInput = event.currentTarget;
-// let userInput = form.elements.searchQuery.value.trim();
-// console.log(userInput);
+let userInput = ""; // створив глобальну змінну(те що вводить користувач), яка повинна перезаписуватись і передаватись в onLoadMore
 
 refs.loadBtn.classList.replace("load-more", "load-more-hidden");
 
@@ -32,6 +23,8 @@ async function handleSearch(event) {
 
   const form = event.currentTarget;
   const formData = form.elements.searchQuery.value.trim();
+
+  let userInput = formData; // оновив значення глобальної змінної, але вона його не буде бачити
 
   if (formData === "") {
     return Notiflix.Notify.info("Please fill in the field!");
