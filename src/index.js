@@ -1,4 +1,6 @@
 import Notiflix from "notiflix";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { serviceImages } from "./service-images.js";
 
 const refs = {
@@ -10,7 +12,7 @@ const refs = {
 
 let page = 1;
 
-let userInput = ""; // створив глобальну змінну(те що вводить користувач), яка повинна перезаписуватись і передаватись в onLoadMore
+let formData = "";
 
 refs.loadBtn.classList.replace("load-more", "load-more-hidden");
 
@@ -22,9 +24,7 @@ async function handleSearch(event) {
   refs.searchBtn.disabled = true;
 
   const form = event.currentTarget;
-  const formData = form.elements.searchQuery.value.trim();
-
-  let userInput = formData; // оновив значення глобальної змінної, але вона його не буде бачити
+  formData = form.elements.searchQuery.value.trim();
 
   if (formData === "") {
     return Notiflix.Notify.info("Please fill in the field!");
@@ -62,7 +62,7 @@ async function onLoadMore({ target }) {
   target.disabled = true;
 
   try {
-    const images = await serviceImages(userInput, page);
+    const images = await serviceImages(formData, page);
 
     refs.list.insertAdjacentHTML("beforeend", createMarkup(images.hits));
 
@@ -94,22 +94,22 @@ function createMarkup(arr) {
         downloads,
       }) => `
         <div class="photo-card">
-  <img src="${webformatURL}" alt="${tags}" loading="lazy" />
-  <div class="info">
-    <p class="info-item">
-      <b>Likes: <span>${likes}</span></b>
-    </p>
-    <p class="info-item">
-      <b>Views: <span>${views}</span></b>
-    </p>
-    <p class="info-item">
-      <b>Comments: <span>${comments}</span></b>
-    </p>
-    <p class="info-item">
-      <b>Downloads: <span>${downloads}</span></b>
-    </p>
-  </div>
-</div>`,
+          <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+            <div class="info">
+              <p class="info-item">
+                <b>Likes: <span>${likes}</span></b>
+              </p>
+              <p class="info-item">
+                <b>Views: <span>${views}</span></b>
+              </p>
+              <p class="info-item">
+                <b>Comments: <span>${comments}</span></b>
+              </p>
+              <p class="info-item">
+                <b>Downloads: <span>${downloads}</span></b>
+              </p>
+            </div>
+        </div>`,
     )
     .join("");
 }
