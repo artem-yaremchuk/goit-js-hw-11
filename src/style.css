@@ -117,8 +117,9 @@ img {
 
 .photo-card {
   width: 300px;
-  border-radius: 10px;
+  height: 400px;
   overflow: hidden;
+  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   background-color: #fff;
   transition: transform var(--transition), box-shadow var(--transition);
@@ -132,6 +133,7 @@ img {
 .photo-card img {
   width: 100%;
   height: 60%;
+  object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
