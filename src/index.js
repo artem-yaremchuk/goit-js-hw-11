@@ -44,8 +44,11 @@ async function handleSearch(event) {
     const currentImagesHits = page * images.perPage;
 
     if (currentImagesHits < images.perPage) {
-        refs.loadBtn.classList.replace("load-more", "load-more-hidden");
-      }
+      refs.loadBtn.classList.replace("load-more", "load-more-hidden");
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results.",
+      );
+    }
 
     if (currentImagesHits < images.totalHits) {
       refs.loadBtn.classList.replace("load-more-hidden", "load-more");
@@ -71,8 +74,11 @@ async function onLoadMore({ target }) {
     const currentImagesHits = page * images.perPage;
 
     if (currentImagesHits < images.perPage) {
-        refs.loadBtn.classList.replace("load-more", "load-more-hidden");
-      }
+      refs.loadBtn.classList.replace("load-more", "load-more-hidden");
+      Notiflix.Notify.info(
+        "We're sorry, but you've reached the end of search results.",
+      );
+    }
 
     if (currentImagesHits >= images.totalHits) {
       refs.loadBtn.classList.replace("load-more", "load-more-hidden");

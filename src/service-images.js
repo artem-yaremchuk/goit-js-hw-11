@@ -17,5 +17,6 @@ export async function serviceImages(formData, page = 1) {
 
   const response = await axios.get(`${BASE_URL}?${params}`);
   response.data.perPage = per_page;
+  console.log(response.data);
   return response.data;
 }
