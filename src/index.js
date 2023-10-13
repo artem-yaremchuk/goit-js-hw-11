@@ -43,6 +43,10 @@ async function handleSearch(event) {
 
     const currentImagesHits = page * images.perPage;
 
+    if (currentImagesHits < images.perPage) {
+        refs.loadBtn.classList.replace("load-more", "load-more-hidden");
+      }
+
     if (currentImagesHits < images.totalHits) {
       refs.loadBtn.classList.replace("load-more-hidden", "load-more");
     }
@@ -65,6 +69,10 @@ async function onLoadMore({ target }) {
     refs.list.insertAdjacentHTML("beforeend", createMarkup(images.hits));
 
     const currentImagesHits = page * images.perPage;
+
+    if (currentImagesHits < images.perPage) {
+        refs.loadBtn.classList.replace("load-more", "load-more-hidden");
+      }
 
     if (currentImagesHits >= images.totalHits) {
       refs.loadBtn.classList.replace("load-more", "load-more-hidden");

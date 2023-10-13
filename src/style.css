@@ -1,75 +1,158 @@
+:root {
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
 .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.input {
+  width: 264px;
+  border: 1px solid #434455;
+  background-color: transparent;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  padding-left: 16px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+  border-radius: 4px;
+  color: #434455;
+}
+
+.input::placeholder {
+  color: #434455;
+}
+
+.search-btn {
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #4D5AE5;
+  background-color: #F4F4FD;
+  cursor: pointer;
+  padding: 8px 24px;
+  border: 1px solid #e7e9fc;
+  border-radius: 4px;
+  transition: color var(--transition), background-color var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.search-btn:hover,
+.search-btn:focus {
+  color: #FFFFFF;
+  background-color: #404BBF;
+  border: 1px solid transparent;
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12); 
+}
 
 .load-more-hidden {
     display: none;
-  }
+}
   
-  .load-more {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-  }
+.load-more {
+  display: block;
+  min-width: 169px;
+  height: 56px;
+  padding: 16px 32px;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #FFFFFF;
+  background-color: #4D5AE5;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 4px;
+  border: none;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  transition: background-color var(--transition), transform var(--transition);
+}
 
-  .load-more:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-  }
+.load-more:hover {
+  background-color: #404BBF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  transform: scale(1.05);
+}
   
-  .load-more:disabled {
-    background-color: #c1c1c1;
-    cursor: not-allowed;
-  }
+.load-more:disabled {
+  background-color: #c1c1c1;
+  cursor: not-allowed;
+}
 
-  .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
 
-  .photo-card {
-    position: relative;
-    width: 300px;
-    margin: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #fff;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  }
+.photo-card {
+  width: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
 
-  .photo-card img {
-    width: 100%;
-    height: 60%;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
+.photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
 
-  .info {
-    padding: 15px;
-  }
+.photo-card img {
+  width: 100%;
+  height: 60%;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
 
-  .info-item {
-    margin: 5px 0;
-    font-size: 18px;
+.info {
+  padding: 15px;
+}
+
+.info-item {
+  color: #2E2F42;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin-bottom: 5px;
 }
 
 .info-item span {
-    color: #777;
-    font-size: 16px;
+  color: #434455;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
 }
