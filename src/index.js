@@ -1,4 +1,6 @@
 import Notiflix from "notiflix";
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 import { serviceImages } from "./service-images.js";
 
 const refs = {
@@ -36,18 +38,16 @@ async function handleSearch(event) {
         "Sorry, there are no images matching your search query. Please try again.",
       );
     } else {
-      Notiflix.Notify.info(`Hooray! We found ${images.totalHits} images`);
+      Notiflix.Notify.success(`Hooray! We found ${images.totalHits} images`);
     }
 
     refs.list.innerHTML = createMarkup(images.hits);
+    lightBox();
 
     const currentImagesHits = page * images.perPage;
 
-    if (currentImagesHits < images.perPage) {
-      refs.loadBtn.classList.replace("load-more", "load-more-hidden");
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results.",
-      );
+    if (images.totalHits < currentImagesHits && images.totalHits !== 0) {
+      delayNotify();
     }
 
     if (currentImagesHits < images.totalHits) {
@@ -70,21 +70,13 @@ async function onLoadMore({ target }) {
     const images = await serviceImages(formData, page);
 
     refs.list.insertAdjacentHTML("beforeend", createMarkup(images.hits));
+    lightBox();
 
     const currentImagesHits = page * images.perPage;
 
-    if (currentImagesHits < images.perPage) {
-      refs.loadBtn.classList.replace("load-more", "load-more-hidden");
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results.",
-      );
-    }
-
     if (currentImagesHits >= images.totalHits) {
       refs.loadBtn.classList.replace("load-more", "load-more-hidden");
-      Notiflix.Notify.info(
-        "We're sorry, but you've reached the end of search results.",
-      );
+      delayNotify();
     }
   } catch (err) {
     console.log(err);
@@ -106,7 +98,9 @@ function createMarkup(arr) {
         downloads,
       }) => `
         <div class="photo-card">
+         <a href="${largeImageURL}">
           <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+         </a>
             <div class="info">
               <p class="info-item">
                 <b>Likes: <span>${likes}</span></b>
@@ -125,3 +119,19 @@ function createMarkup(arr) {
     )
     .join("");
 }
+
+function delayNotify() {
+  const timerId = setTimeout(() => {
+    Notiflix.Notify.info(
+      "We're sorry, but you've reached the end of search results.",
+    );
+  }, 2000);
+}
+
+function lightBox() {
+  let gallery = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: "250",
+});
+} 
