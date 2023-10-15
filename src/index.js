@@ -72,6 +72,15 @@ async function onLoadMore({ target }) {
     refs.list.insertAdjacentHTML("beforeend", createMarkup(images.hits));
     lightBox();
 
+    const { height: cardHeight } = document
+      .querySelector(".gallery")
+      .firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 1.5,
+      behavior: "smooth",
+    });
+
     const currentImagesHits = page * images.perPage;
 
     if (currentImagesHits >= images.totalHits) {
@@ -130,8 +139,8 @@ function delayNotify() {
 
 function lightBox() {
   let gallery = new SimpleLightbox(".gallery a", {
-  captionsData: "alt",
-  captionPosition: "bottom",
-  captionDelay: "250",
-});
-} 
+    captionsData: "alt",
+    captionPosition: "bottom",
+    captionDelay: "250",
+  });
+}
